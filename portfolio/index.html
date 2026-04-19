@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Hrudul Krishna K V — Portfolio</title>
+
+  <!-- Google Fonts -->
+  <link href="https://fonts.googleapis.com/css2?family=Orbitron:wght@700;900&family=Rajdhani:wght@400;500;600;700&display=swap" rel="stylesheet"/>
+
+  <!-- CSS — base first, then per-section -->
+  <link rel="stylesheet" href="css/base.css"/>
+  <link rel="stylesheet" href="css/hero.css"/>
+  <link rel="stylesheet" href="css/about.css"/>
+  <link rel="stylesheet" href="css/projects.css"/>
+  <link rel="stylesheet" href="css/certificates.css"/>
+  <link rel="stylesheet" href="css/contact.css"/>
+</head>
+<body>
+
+  <!-- Custom cursor elements -->
+  <div class="cursor" id="cur"></div>
+  <div class="cursor-ring" id="ring"></div>
+
+  <!-- Navigation -->
+  <nav>
+    <a href="#hero" class="nav-logo">PORTFOLIO</a>
+    <div class="nav-links">
+      <a href="#hero"         class="active">🏠 Home</a>
+      <a href="#about">⭐ About</a>
+      <a href="#projects">⭐ Projects</a>
+      <a href="#certificates">⭐ Certificates</a>
+      <a href="#contact">⭐ Contact</a>
+    </div>
+  </nav>
+
+  <!-- ═══ SECTIONS ═══
+       Each section lives in its own file under sections/.
+       In a plain HTML setup they are pasted here directly.
+       If you migrate to a framework (React / Next.js / Astro),
+       each sections/*.html becomes its own component file.
+  ══════════════════════ -->
+
+  <!-- Hero -->
+  <section id="hero">
+    <div class="grid-bg"></div>
+    <div class="hero-content">
+      <div class="hero-avatar">🧑‍💻</div>
+      <h1 class="hero-name">HRUDUL KRISHNA K V</h1>
+      <p class="hero-sub">Hi. I am a CSE undergraduate student currently studying at TKM College of Engineering.</p>
+      <div class="hero-btns">
+        <a href="#projects" class="btn btn-y">View Projects</a>
+        <a href="#contact"  class="btn btn-b">Contact Me</a>
+      </div>
+    </div>
+    <div class="hero-figs">
+      <div class="fig fig-l">🧍</div>
+      <div class="fig fig-r">🧍</div>
+    </div>
+  </section>
+
+  <!-- About -->
+  <section id="about">
+    <div class="about-inner">
+      <div class="sidebar">
+        <div class="si">☰</div>
+        <div class="si active">✏️</div>
+        <div class="si blue">Me</div>
+        <div class="si">💬</div>
+        <div class="si">👥</div>
+        <div class="si">📹</div>
+      </div>
+      <div style="padding-left:60px;">
+        <div class="about-header reveal">
+          <div class="about-av">🧑‍💻</div>
+          <div>
+            <div class="about-name">HRUDUL KRISHNA K V</div>
+            <div class="about-sub">CSE · TKM College of Engineering</div>
+          </div>
+        </div>
+        <div class="about-grid reveal">
+          <div class="acard personal"><div class="acard-label">PERSONAL</div></div>
+          <div class="acard"><div class="acard-label">SKILLS</div></div>
+          <div class="acard"><div class="acard-label">ACHIEVEMENTS</div></div>
+        </div>
+        <a href="#" class="dl-btn" title="Download Resume">⬇</a>
+      </div>
+      <div class="about-figs">
+        <div class="afig afig-l">🧍</div>
+        <div class="afig afig-r">🧍</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- Projects -->
+  <section id="projects">
+    <div class="proj-inner">
+      <div class="proj-header reveal">
+        <div class="proj-title-box"><span>PROJECTS</span></div>
+        <span class="star">★</span>
+      </div>
+    </div>
+    <div class="stream-wrap reveal">
+      <div class="stream-track" id="streamTrack"></div>
+    </div>
+  </section>
+
+  <!-- Certificates -->
+  <section id="certificates">
+    <div class="cert-inner">
+      <div class="cert-header reveal">
+        <div class="cert-title-box"><span>CERTIFICATES</span></div>
+        <span style="font-size:2rem;">📜</span>
+      </div>
+      <div class="cert-pile-area reveal" id="certPile"></div>
+      <p class="cert-pile-hint">Hover any certificate to lift it to the top</p>
+    </div>
+  </section>
+
+  <!-- Contact -->
+  <section id="contact">
+    <div class="cont-inner">
+      <div class="cont-title-box reveal"><span>CONTACT</span></div>
+      <div class="cont-grid reveal">
+        <div class="cont-vis"><img src="images/undraw_team-chat_kjj8.svg"></div>
+        <div class="cont-cards">
+          <a href="https://github.com/hrudulmmn" target="_blank" class="citem">
+            <div class="cicon"><img src="images/icons/github.svg"></div>
+            <div><div class="clabel">GitHub</div><div class="cval">hrudulmmn</div></div>
+          </a>
+          <a href="mailto:hrudulkrishna06@gmail.com" class="citem">
+            <div class="cicon"><img src="images/icons/gmail.svg"></div>
+            <div><div class="clabel">Gmail</div><div class="cval">hrudulkrishna06@gmail.com</div></div>
+          </a>
+          <a href="https://linkedin.com/in/hrudul-krishna-k-v" target="_blank" class="citem">
+            <div class="cicon"><img src="images/icons/linkedin.svg"></div>
+            <div><div class="clabel">LinkedIn</div><div class="cval">Hrudul Krishna K V</div></div>
+          </a>
+          <a href="#" class="citem">
+            <div class="cicon"><img src="images/icons/resume (1).png"></div>
+            <div><div class="clabel">Resume</div><div class="cval">My Resume</div></div>
+          </a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <footer>
+    <p>Built by <span style="color:var(--accent);font-weight:700;">Hrudul Krishna K V</span> · TKM College of Engineering</p>
+  </footer>
+
+  <!-- JS — cursor first, then section scripts, nav last -->
+  <script src="js/cursor.js"></script>
+  <script src="js/projects.js"></script>
+  <script src="js/certificates.js"></script>
+  <script src="js/nav.js"></script>
+
+</body>
+</html>

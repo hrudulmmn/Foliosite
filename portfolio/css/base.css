@@ -1,0 +1,98 @@
+/* ── VARIABLES ── */
+:root {
+  --bg: #0b1120;
+  --surface: #111827;
+  --surface2: #16213a;
+  --border: rgba(90,110,160,0.3);
+  --accent: #f5c518;
+  --accent2: #00c8ff;
+  --text: #e8eaf0;
+  --muted: #7a8499;
+  --card: #131d2e;
+}
+
+/* ── RESET ── */
+* { margin:0; padding:0; box-sizing:border-box; }
+html { scroll-behavior:smooth; }
+body {
+  background: var(--bg);
+  color: var(--text);
+  font-family: 'Rajdhani', sans-serif;
+  overflow-x: hidden;
+  cursor: none;
+}
+
+/* ── CUSTOM CURSOR ── */
+.cursor {
+  width:10px; height:10px;
+  background:var(--accent);
+  border-radius:50%;
+  position:fixed; pointer-events:none;
+  z-index:9999;
+  transform:translate(-50%,-50%);
+  transition:transform .15s;
+}
+.cursor-ring {
+  width:34px; height:34px;
+  border:1.5px solid var(--accent2);
+  border-radius:50%;
+  position:fixed; pointer-events:none;
+  z-index:9998;
+  transform:translate(-50%,-50%);
+  opacity:.5;
+  transition:width .2s, height .2s;
+}
+
+/* ── NAV ── */
+nav {
+  position:fixed; top:0; left:0; right:0; z-index:200;
+  display:flex; align-items:center; justify-content:space-between;
+  padding:16px 48px;
+  background:rgba(11,17,32,0.9);
+  backdrop-filter:blur(14px);
+  border-bottom:1px solid var(--border);
+}
+.nav-logo {
+  font-family:'Orbitron',monospace;
+  font-size:1rem; color:var(--accent);
+  text-decoration:none; letter-spacing:.1em;
+}
+.nav-links { display:flex; gap:6px; }
+.nav-links a {
+  display:flex; align-items:center; gap:6px;
+  padding:6px 16px; border-radius:20px;
+  font-size:.82rem; font-weight:600; letter-spacing:.05em;
+  text-decoration:none; color:var(--muted);
+  border:1px solid transparent;
+  transition:all .25s; text-transform:uppercase;
+}
+.nav-links a:hover,
+.nav-links a.active { color:var(--text); background:var(--surface2); border-color:var(--border); }
+.nav-links a.active  { background:var(--accent); color:#000; border-color:var(--accent); }
+
+/* ── SHARED BUTTON ── */
+.btn {
+  padding:10px 26px; border-radius:6px;
+  font-family:'Rajdhani', sans-serif;
+  font-size:.88rem; font-weight:700; letter-spacing:.08em;
+  text-decoration:none; text-transform:uppercase;
+  transition:all .25s; cursor:none;
+}
+.btn-y { background:var(--accent); color:#000; border:2px solid var(--accent); }
+.btn-y:hover { background:transparent; color:var(--accent); }
+.btn-b { background:transparent; color:var(--accent2); border:2px solid var(--accent2); }
+.btn-b:hover { background:var(--accent2); color:#000; }
+
+/* ── SCROLL REVEAL ── */
+.reveal { opacity:0; transform:translateY(28px); transition:opacity .7s, transform .7s; }
+.reveal.visible { opacity:1; transform:none; }
+
+/* ── KEYFRAMES ── */
+@keyframes fadeUp   { from{opacity:0;transform:translateY(36px)} to{opacity:1;transform:none} }
+@keyframes float    { 0%,100%{transform:translateY(0)} 50%{transform:translateY(-12px)} }
+@keyframes spin     { from{transform:rotate(0)} to{transform:rotate(360deg)} }
+@keyframes walkR    { from{transform:translateX(0)} to{transform:translateX(70px)} }
+@keyframes walkL    { from{transform:scaleX(-1) translateX(0)} to{transform:scaleX(-1) translateX(70px)} }
+@keyframes walkToCenter  { from{transform:translateX(0)} to{transform:translateX(90px)} }
+@keyframes walkToCenterR { from{transform:scaleX(-1) translateX(0)} to{transform:scaleX(-1) translateX(90px)} }
+@keyframes streamLeft    { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
