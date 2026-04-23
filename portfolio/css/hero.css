@@ -33,7 +33,7 @@
   display:flex; align-items:center; justify-content:center;
   font-size:3rem; overflow:hidden;
 }
-.hero-avatar img { width:100%; height:100%; object-fit:cover; }
+.hero-avatar img { width:100%; height:100%; object-fit:cover; padding: 4px; border-radius: 100%; }
 
 .hero-name {
   font-family:'Orbitron', monospace;
@@ -50,10 +50,10 @@
 
 /* Walking figures */
 .hero-figs {
-  position:absolute; bottom:0; left:0; right:0;
+  position:absolute; bottom: -1px; left:0; right:0;
   display:flex; justify-content:space-between;
   padding:0 60px; pointer-events:none;
 }
-.fig { font-size:5rem; opacity:.22; }
-.fig-l { animation:walkR 3s ease-in-out forwards; }
-.fig-r { animation:walkL 3s ease-in-out forwards; }
+.fig { max-width: 25%; max-height: 25%; opacity:.22; }
+.fig-l { animation:walkR 3s ease-in-out forwards; margin-top: auto;  }
+.fig-r { animation:walkL 3s ease-in-out forwards; margin-top: auto;}

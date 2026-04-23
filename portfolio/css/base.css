@@ -96,3 +96,11 @@ nav {
 @keyframes walkToCenter  { from{transform:translateX(0)} to{transform:translateX(90px)} }
 @keyframes walkToCenterR { from{transform:scaleX(-1) translateX(0)} to{transform:scaleX(-1) translateX(90px)} }
 @keyframes streamLeft    { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
+@keyframes walkToContentL {
+  0%   { transform: translateX(0px); }
+  100% { transform: translateX(35px); }  /* tweak 60px to taste */
+}
+@keyframes walkToContentR {
+  0%   { transform: translateX(0px); }
+  100% { transform: translateX(-10px); } /* negative = walks left */
+}

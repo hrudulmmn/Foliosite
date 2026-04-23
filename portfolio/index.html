@@ -45,7 +45,7 @@
   <section id="hero">
     <div class="grid-bg"></div>
     <div class="hero-content">
-      <div class="hero-avatar">🧑‍💻</div>
+      <div class="hero-avatar"><img src="images/me.jpg"></div>
       <h1 class="hero-name">HRUDUL KRISHNA K V</h1>
       <p class="hero-sub">Hi. I am a CSE undergraduate student currently studying at TKM College of Engineering.</p>
       <div class="hero-btns">
@@ -54,23 +54,15 @@
       </div>
     </div>
     <div class="hero-figs">
-      <div class="fig fig-l">🧍</div>
-      <div class="fig fig-r">🧍</div>
+      <div class="fig fig-l"><img src="images/hero1.svg"></div>
+      <div class="fig fig-r"><img src="images/hero2.svg" style="transform: scaleX(-1); height: 450px; width: auto;"></div>
     </div>
   </section>
 
   <!-- About -->
   <section id="about">
     <div class="about-inner">
-      <div class="sidebar">
-        <div class="si">☰</div>
-        <div class="si active">✏️</div>
-        <div class="si blue">Me</div>
-        <div class="si">💬</div>
-        <div class="si">👥</div>
-        <div class="si">📹</div>
-      </div>
-      <div style="padding-left:60px;">
+      <div style="padding-left: 16px; padding-right: 8px;">
         <div class="about-header reveal">
           <div class="about-av">🧑‍💻</div>
           <div>
@@ -86,8 +78,8 @@
         <a href="#" class="dl-btn" title="Download Resume">⬇</a>
       </div>
       <div class="about-figs">
-        <div class="afig afig-l">🧍</div>
-        <div class="afig afig-r">🧍</div>
+        <img src="images/person1.svg" class="afig afig-l">
+        <img src="images/person2.svg" class="afig afig-r">
       </div>
     </div>
   </section>
@@ -106,16 +98,17 @@
   </section>
 
   <!-- Certificates -->
-  <section id="certificates">
-    <div class="cert-inner">
-      <div class="cert-header reveal">
-        <div class="cert-title-box"><span>CERTIFICATES</span></div>
-        <span style="font-size:2rem;">📜</span>
-      </div>
-      <div class="cert-pile-area reveal" id="certPile"></div>
-      <p class="cert-pile-hint">Hover any certificate to lift it to the top</p>
+<section id="certificates">
+  <div class="cert-inner">
+    <div class="cert-header reveal">
+      <div class="cert-title-box"><span>CERTIFICATES</span></div>
+      <span style="font-size:2rem;">📜</span>
     </div>
-  </section>
+    <div class="cert-pile-area" id="certPile"></div>
+    <div class="cert-dots" id="certDots"></div>
+    <p class="cert-pile-hint" id="certHint">↓ scroll to stack</p>
+  </div>
+</section>
 
   <!-- Contact -->
   <section id="contact">

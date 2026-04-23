@@ -1,64 +1,136 @@
-/* ── CERTIFICATES DATA ── */
 const certs = [
-  { title: 'Data Structures & Algorithms', issuer: 'NPTEL',    badge: '🏅' },
-  { title: 'Full Stack Web Development',   issuer: 'Udemy',    badge: '🎖️' },
-  { title: 'Machine Learning Fundamentals',issuer: 'Coursera', badge: '⭐' },
-  { title: 'Python Programming',           issuer: 'NPTEL',    badge: '🔖' },
-  { title: 'Database Management Systems',  issuer: 'NPTEL',    badge: '🏆' },
+  { title: 'Data Structures & Algorithms',  issuer: 'NPTEL',    badge: '🏅', year: '2024' },
+  { title: 'Full Stack Web Development',    issuer: 'Udemy',    badge: '🎖️', year: '2024' },
+  { title: 'Machine Learning Fundamentals', issuer: 'Coursera', badge: '⭐', year: '2023' },
+  { title: 'Python Programming',            issuer: 'NPTEL',    badge: '🔖', year: '2023' },
+  { title: 'Database Management Systems',   issuer: 'NPTEL',    badge: '🏆', year: '2024' },
 ];
 
-/* ── SEEDED RNG — stable random layout every load ── */
-function seededRNG(seed) {
-  let s = seed;
-  return () => { s = (s * 9301 + 49297) % 233280; return s / 233280; };
-}
 
-/* ── BUILD & ANIMATE PILE ── */
+  const ROTS          = [-3, 2.2, -1.8, 3.4, -2.6];
+  const TXS           = [-10, 7, -5, 12, 0];
+  const TYS           = [0, -5, 7, -3, 0];
+  const CARD_SCROLL_PX = 140;
+  const ENTRY_PX       = 120;
+
 function initCertPile() {
-  const pile = document.getElementById('certPile');
+  const pile   = document.getElementById('certPile');
+  const dotsEl = document.getElementById('certDots');
+  const hint   = document.getElementById('certHint');
   if (!pile) return;
 
+  const cardEls = [];
+  const dotEls  = [];
+  let virtualScroll = 0;          // our own scroll counter, not window.scrollY
+  const TOTAL_SCROLL = certs.length * CARD_SCROLL_PX;
+  let isHovering = false;
+
+  function lockScroll() {
+  document.body.style.overflow = 'hidden';
+  }
+
+  function unlockScroll() {
+  document.body.style.overflow = '';
+  }
+  /* Build cards — same as before */
   certs.forEach((c, i) => {
-    const rng = seededRNG(i * 173 + 61);
-    const rot =  (rng() - 0.5) * 26;   // -13 → +13 deg
-    const tx  =  (rng() - 0.5) * 40;   // horizontal jitter
-    const ty  =  (rng() - 0.5) * 30;   // vertical jitter
-
-    const finalTransform =
-      `translate(calc(-50% + ${tx}px), calc(-50% + ${ty}px)) rotate(${rot}deg)`;
-    const dropTransform  =
-      `translate(calc(-50% + ${tx}px), calc(-120px + ${ty}px)) rotate(${rot}deg)`;
-
     const card = document.createElement('div');
-    card.className   = 'ccard';
-    card.style.zIndex    = i + 1;
-    card.style.opacity   = '0';
-    card.style.transform = dropTransform; // start above viewport
-    card.style.left = '50%';
-    card.style.top  = '50%';
-
+    card.className = 'ccard';
+    card.style.zIndex = i + 1;
     card.innerHTML = `
-      <div class="cbadge">${c.badge}</div>
-      <div class="ctitle">${c.title}</div>
-      <div class="cissuer">${c.issuer}</div>
-    `;
-
-    // Staggered drop-in: each card falls in one after another
-    setTimeout(() => {
-      card.style.transition = 'opacity .15s, transform .7s cubic-bezier(.34,1.56,.64,1)';
-      card.style.opacity    = '1';
-      // Two rAF to let the browser paint the start state first
-      requestAnimationFrame(() => requestAnimationFrame(() => {
-        card.style.transform = finalTransform;
-      }));
-    }, 300 + i * 220);
-
-    // Hover: bring to top; leave: restore original z
-    card.addEventListener('mouseenter', () => { card.style.zIndex = 30; });
+      <div class="ccard-inner">
+        <div class="cmeta">
+          <div class="cbadge">${c.badge}</div>
+          <span class="cissuer">${c.issuer} · ${c.year}</span>
+        </div>
+        <div class="ctitle">${c.title}</div>
+        <div class="cbar"></div>
+      </div>`;
+    card.addEventListener('mouseenter', () => { card.style.zIndex = 20; });
     card.addEventListener('mouseleave', () => { card.style.zIndex = i + 1; });
-
     pile.appendChild(card);
+    cardEls.push(card);
+
+    const dot = document.createElement('span');
+    dot.className = 'cdot';
+    dotsEl.appendChild(dot);
+    dotEls.push(dot);
   });
+
+  /* Render cards based on virtualScroll instead of window.scrollY */
+  function render() {
+    let allLanded = true;
+
+    certs.forEach((_, i) => {
+      const card = cardEls[i];
+      const dot  = dotEls[i];
+      const rot  = ROTS[i];
+      const tx   = TXS[i];
+      const ty   = TYS[i];
+
+      const windowStart = i * CARD_SCROLL_PX;
+      const local       = virtualScroll - windowStart;
+
+      if (local <= 0) {
+        card.style.opacity   = '0';
+        card.style.transform = `translate(${tx}px, -120%) rotate(0deg)`;
+        card.classList.remove('landed');
+        dot.classList.remove('lit');
+        allLanded = false;
+      } else if (local < ENTRY_PX) {
+        const t = local / ENTRY_PX;
+        const e = 1 - Math.pow(1 - t, 3);
+        const y = -120 + (120 + ty) * e;
+        card.style.opacity   = String(Math.min(1, t * 2));
+        card.style.transform = `translate(${tx}px, ${y}%) rotate(${rot * e}deg)`;
+        card.classList.remove('landed');
+        dot.classList.remove('lit');
+        allLanded = false;
+      } else {
+        card.style.opacity   = '1';
+        card.style.transform = `translate(${tx}px, ${ty}px) rotate(${rot}deg)`;
+        card.classList.add('landed');
+        dot.classList.add('lit');
+      }
+    });
+
+    if (hint) hint.classList.toggle('hidden', allLanded);
+    return allLanded;
+  }
+
+  /* Wheel handler — hijacks scroll while hovering over the section */
+  const section = document.getElementById('certificates');
+
+  section.addEventListener('wheel', (e) => {
+    const stackDone = virtualScroll >= TOTAL_SCROLL;
+    const stackStart = virtualScroll <= 0;
+
+    /* Let page scroll normally if:
+       - scrolling UP and stack is already at start
+       - scrolling DOWN and stack is already fully done */
+    if ((e.deltaY > 0 && stackDone) || (e.deltaY < 0 && stackStart)) {
+      unlockScroll();
+      return;
+    }
+
+    /* Otherwise consume the wheel event for stacking */
+    e.preventDefault();
+    virtualScroll = Math.max(0, Math.min(TOTAL_SCROLL, virtualScroll + e.deltaY));
+    render();
+
+  }, { passive: false }); // passive:false so preventDefault works
+
+  /* Lock/unlock page scroll on hover */
+  section.addEventListener('mouseenter', () => {
+    isHovering = true;
+    lockScroll();
+  });
+  section.addEventListener('mouseleave', () => {
+    isHovering = false;
+    unlockScroll();
+  });
+
+  render(); // initial state
 }
 
 initCertPile();

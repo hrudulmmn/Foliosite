@@ -7,7 +7,7 @@
 
 .about-inner {
   max-width:1100px; margin:0 auto;
-  padding:0 40px; position:relative;
+  padding:0 100px; position:relative;
 }
 
 /* Sidebar */
@@ -75,7 +75,7 @@
 
 /* Download button */
 .dl-btn {
-  position:absolute; bottom:20px; right:20px;
+  position:absolute; bottom:0px; right:90px;
   width:46px; height:46px; background:var(--accent); border-radius:50%;
   display:flex; align-items:center; justify-content:center;
   font-size:1.1rem; cursor:none; text-decoration:none; color:#000;
@@ -86,9 +86,10 @@
 
 /* Walking figures */
 .about-figs {
-  position:absolute; bottom:0; left:80px; right:80px;
+  position:absolute; bottom:0; left:0px; right:0px;
   display:flex; justify-content:space-between; pointer-events:none;
+  align-items: flex-end; overflow: hidden;
 }
-.afig { font-size:4rem; opacity:.18; }
-.afig-l { animation:walkToCenter 4s ease-in-out forwards; }
-.afig-r { animation:walkToCenterR 4s ease-in-out forwards; }
+.afig {  opacity:.18; height: 240px; width: auto; vertical-align: bottom; }
+.afig-l { animation:walkToContentL 4s ease-in-out forwards; margin-right: auto; }
+.afig-r { animation:walkToContentR 4s ease-in-out forwards; margin-left: auto; }
