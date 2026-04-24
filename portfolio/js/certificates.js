@@ -1,9 +1,9 @@
 const certs = [
-  { title: 'Data Structures & Algorithms',  issuer: 'NPTEL',    badge: '🏅', year: '2024' },
+  { title: 'Data Structures & Algorithms',  issuer: 'NPTEL',    badge: '🏅', year: '2024',  },
   { title: 'Full Stack Web Development',    issuer: 'Udemy',    badge: '🎖️', year: '2024' },
   { title: 'Machine Learning Fundamentals', issuer: 'Coursera', badge: '⭐', year: '2023' },
-  { title: 'Python Programming',            issuer: 'NPTEL',    badge: '🔖', year: '2023' },
-  { title: 'Database Management Systems',   issuer: 'NPTEL',    badge: '🏆', year: '2024' },
+  { title: 'Introduction to Machine Learning', issuer: 'NPTEL',    badge: '🔖', year: '2025', image:"images/certificates/mlnptel.png" },
+  { title: 'Deloitte Job Simulation',   issuer: 'Forage',    badge: '🏆', year: '2025',image: "images/certificates/deloitte.png" },
 ];
 
 
@@ -39,6 +39,9 @@ function initCertPile() {
     card.style.zIndex = i + 1;
     card.innerHTML = `
       <div class="ccard-inner">
+      <div class="ccardimg-cont">
+        <img class="ccard-img"  src=${c.image}>
+      </div>
         <div class="cmeta">
           <div class="cbadge">${c.badge}</div>
           <span class="cissuer">${c.issuer} · ${c.year}</span>
@@ -99,9 +102,10 @@ function initCertPile() {
   }
 
   /* Wheel handler — hijacks scroll while hovering over the section */
-  const section = document.getElementById('certificates');
+  const pilearea = document.getElementById('certPile');
+  
 
-  section.addEventListener('wheel', (e) => {
+  pilearea.addEventListener('wheel', (e) => {
     const stackDone = virtualScroll >= TOTAL_SCROLL;
     const stackStart = virtualScroll <= 0;
 
