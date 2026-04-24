@@ -83,3 +83,17 @@
   color:var(--muted); transition:all .2s; font-weight:600;
 }
 .plink:hover { border-color:var(--accent2); color:var(--accent2); }
+
+/* Video sits hidden inside thumb by default */
+.pcard-video {
+  position: absolute;
+  inset: 0;
+  width: 100%; height: 100%;
+  object-fit: cover;
+  opacity: 0;              /* hidden by default */
+  transition: opacity .4s ease-in; /* smooth fade in */
+  z-index: 2;
+}
+
+/* Fades in when card is hovered */
+.pcard:hover .pcard-video { opacity: 1; }

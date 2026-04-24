@@ -6,7 +6,8 @@ const projects = [
     tags: ['React', 'Node.js', 'MongoDB', 'Razorpay'],
     icon: '🛒',
     grad: 'linear-gradient(135deg,#1a3a6e 0%,#0e5f6e 100%)',
-    link: 'https://github.com/hrudulmmn/campusCart'
+    link: 'https://github.com/hrudulmmn/campusCart',
+    video: "images/video/campuscart.mp4"
   },
   {
     name: 'Moodilist',
@@ -14,7 +15,8 @@ const projects = [
     tags: ['FastAPI', 'React', 'Supabase', 'ML'],
     icon: '🎵',
     grad: 'linear-gradient(135deg,#2a1a6e 0%,#6e1a5f 100%)',
-    link: 'https://github.com/hrudulmmn'
+    link: 'https://github.com/hrudulmmn/Moodilist',
+    video:"images/video/moodilist.mp4"
   },
   {
     name: 'Kara',
@@ -22,7 +24,8 @@ const projects = [
     tags: ['Python', 'OpenCV', 'MediaPipe', 'PyQt6'],
     icon: '👋',
     grad: 'linear-gradient(135deg,#1a6e3a 0%,#5a6e1a 100%)',
-    link: 'https://github.com/hrudulmmn'
+    link: 'https://github.com/hrudulmmn/Kara',
+    video: "images/video/kara.mp4"
   },
   {
     name: 'Tars Chat',
@@ -30,15 +33,8 @@ const projects = [
     tags: ['Next.js', 'TypeScript', 'Convex', 'Clerk'],
     icon: '💬',
     grad: 'linear-gradient(135deg,#1a4a6e 0%,#6e3a1a 100%)',
-    link: 'https://github.com/hrudulmmn'
-  },
-  {
-    name: 'OS Scheduler',
-    desc: "Round Robin, Priority Scheduling with Aging & Banker's Algorithm implemented in C.",
-    tags: ['C', 'OS', 'Algorithms'],
-    icon: '⚙️',
-    grad: 'linear-gradient(135deg,#3a1a6e 0%,#1a3a6e 100%)',
-    link: 'https://github.com/hrudulmmn'
+    link: 'https://github.com/hrudulmmn/Tarschat',
+    video: "images/video/tarschat.mp4"
   },
 ];
 
@@ -49,6 +45,7 @@ function makeProjectCard(p) {
     <div class="pcard">
       <div class="pcard-thumb" style="background:${p.grad}">
         <span style="position:relative;z-index:1;">${p.icon}</span>
+        <video src="${p.video}" muted loop preload="metadata" playsinline class="pcard-video"></video>
       </div>
       <div class="pcard-body">
         <div class="pcard-name">${p.name}</div>
@@ -59,6 +56,7 @@ function makeProjectCard(p) {
         </div>
       </div>
     </div>`;
+
 }
 
 /* ── INIT STREAM ── */
@@ -66,8 +64,29 @@ function initProjectStream() {
   const track = document.getElementById('streamTrack');
   if (!track) return;
 
+
   // Duplicate cards for seamless infinite loop
   track.innerHTML = [...projects, ...projects].map(makeProjectCard).join('');
+
+  const cards = track.querySelectorAll('.pcard');
+
+  cards.forEach(card => {
+    const video = card.querySelector('.pcard-video');
+    const icon  = card.querySelector('.pcard-thumb span');
+
+    if (!video) return;
+
+    card.addEventListener('mouseenter', () => {
+      video.play();
+      if (icon) icon.style.opacity = '0';
+    });
+
+    card.addEventListener('mouseleave', () => {
+      video.pause();
+      video.currentTime = 0;
+      if (icon) icon.style.opacity = '1';
+    });
+  });
 
   // Pause whole stream on hover so user can interact
   track.addEventListener('mouseenter', () => track.style.animationPlayState = 'paused');

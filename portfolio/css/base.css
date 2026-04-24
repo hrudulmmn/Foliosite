@@ -98,9 +98,9 @@ nav {
 @keyframes streamLeft    { 0%{transform:translateX(0)} 100%{transform:translateX(-50%)} }
 @keyframes walkToContentL {
   0%   { transform: translateX(0px); }
-  100% { transform: translateX(35px); }  /* tweak 60px to taste */
+  100% { transform: translateX(120px); }  /* tweak 60px to taste */
 }
 @keyframes walkToContentR {
   0%   { transform: translateX(0px); }
-  100% { transform: translateX(-10px); } /* negative = walks left */
+  100% { transform: translateX(-120px); } /* negative = walks left */
 }
