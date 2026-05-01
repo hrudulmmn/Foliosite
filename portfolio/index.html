@@ -26,13 +26,25 @@
   <nav>
     <a href="#hero" class="nav-logo">PORTFOLIO</a>
     <div class="nav-links">
-      <a href="#hero"         class="active">🏠 Home</a>
-      <a href="#about">⭐ About</a>
-      <a href="#projects">⭐ Projects</a>
-      <a href="#certificates">⭐ Certificates</a>
-      <a href="#contact">⭐ Contact</a>
+      <a href="#hero"         class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
     </div>
+    <button class="hamburger" id="hamburger">
+      <span></span>
+      <span></span>
+      <span></span>
+    </button>
   </nav>
+  <div class="mobnav" id="mobnav">
+    <a href="#hero"         class="active">Home</a>
+      <a href="#about">About</a>
+      <a href="#projects">Projects</a>
+      <a href="#certificates">Certificates</a>
+      <a href="#contact">Contact</a>
+  </div>
 
   <!-- ═══ SECTIONS ═══
        Each section lives in its own file under sections/.
@@ -47,7 +59,7 @@
     <div class="hero-content">
       <div class="hero-avatar"><img src="images/me.jpg"></div>
       <h1 class="hero-name">HRUDUL KRISHNA K V</h1>
-      <p class="hero-sub">Hi. I am a CSE undergraduate student currently studying at TKM College of Engineering.</p>
+      <p class="hero-sub">I build fast modern web apps and smart features (recommendation systems, gesture controls, real-time tools) with React, FastAPI & Computer Vision. Quick turnaround & clean code."</p>
       <div class="hero-btns">
         <a href="#projects" class="btn btn-y">View Projects</a>
         <a href="#contact"  class="btn btn-b">Contact Me</a>
@@ -134,16 +146,15 @@
         <div class="acard-content">
           <div class="acard-label">ACHIEVEMENTS</div>
           <div class="acard-divider"></div>
-          <div class="ach-list">
-            <div class="ach-item"><span class="ach-icon">🎓</span><span>CGPA <strong>9.75</strong> · TKM College of Engineering</span></div>
-            <div class="ach-item"><span class="ach-icon">🤖</span><span><strong>89%</strong> accuracy · emotion detection ML model</span></div>
-            <div class="ach-item"><span class="ach-icon">⚡</span><span><strong>~60 FPS</strong> real-time gesture processing</span></div>
-            <div class="ach-item"><span class="ach-icon">🚀</span><span><strong>&lt;100ms</strong> latency · FastAPI + React</span></div>
-            <div class="ach-item"><span class="ach-icon">🏆</span><span>Deloitte Tech Job Simulation · 2025</span></div>
+          <div class="ach-list" style="justify-content: center;">
+            <div class="ach-item"><span class="ach-icon"><strong>•</strong></span><span>CGPA <strong>9.75</strong> from TKM College of Engineering</span></div>
+            <div class="ach-item"><span class="ach-icon"><strong>•</strong></span><span>Built emotion detection model with <strong>89%</strong> accuracy</span></div>
+            <div class="ach-item"><span class="ach-icon"><strong>•</strong></span><span>Real-time gesture processing at <strong>~60</strong> FPS</span></div>
+            <div class="ach-item"><span class="ach-icon"><strong>•</strong></span><span>Achieved <strong>&lt;100ms</strong> latency using FastAPI + React</span></div>
+            <div class="ach-item"><span class="ach-icon"><strong>•</strong></span><span>Deloitte Tech Job Simulation · 2025</span></div>
           </div>
         </div>
       </div>
- 
     </div>
         <a href="resume.pdf" target="_blank" class="dl-btn" title="Download Resume">⬇</a>
       </div>
@@ -153,6 +164,7 @@
       </div>
     </div>
   </section>
+
 
   <!-- Projects -->
   <section id="projects">
@@ -165,6 +177,10 @@
     <div class="stream-wrap reveal">
       <div class="stream-track" id="streamTrack"></div>
     </div>
+      <div class="swipe-wrap reveal" id="swipeWrap">
+    <div class="swipe-track" id="swipeTrack"></div>
+  </div>
+  <div class="swipe-dots" id="swipeDots"></div>
   </section>
 
   <!-- Certificates -->
@@ -177,8 +193,24 @@
     <div class="cert-pile-area" id="certPile"></div>
     <div class="cert-dots" id="certDots"></div>
     <p class="cert-pile-hint" id="certHint">↓ scroll to stack</p>
+    <div class="cert-rows reveal" id="certRows"></div>
   </div>
 </section>
+
+<!--Certificate popup-->
+<div class="cert-modal" id="certModal">
+  <div class="cert-modal-box">
+    <button class="cert-modal-close" id="certModalClose">✕</button>
+    <img class="cert-modal-img" id="certModalImg" src="" alt="Certificate"/>
+    <div class="cert-modal-body">
+      <div class="cert-modal-title" id="certModalTitle"></div>
+      <div class="cert-modal-issuer" id="certModalIssuer"></div>
+      <div class="cert-modal-details" id="certModalDetails"></div>
+      <div class="cert-modal-actions" id="certModalActions"></div>
+      <div class="cert-modal-pending-note" id="certModalNote" style="display:none"></div>
+    </div>
+  </div>
+</div>
 
   <!-- Contact -->
   <section id="contact">
@@ -191,12 +223,12 @@
             <div class="cicon"><img src="images/icons/github.svg"></div>
             <div><div class="clabel">GitHub</div><div class="cval">hrudulmmn</div></div>
           </a>
-          <a href="mailto:hrudulkrishna06@gmail.com" class="citem">
-            <div class="cicon"><img src="images/icons/gmail.svg"></div>
+          <a href="mailto:hrudulkrishna06@gmail.com?subject=Oppurtunity" class="citem">
+            <div class="cicon" onclick="navigator.clipboard.writeText('hrudulkrishna06@gmail.com'); alert('Copied to Clipboard');"><img src="images/icons/gmail.svg"></div>
             <div><div class="clabel">Gmail</div><div class="cval">hrudulkrishna06@gmail.com</div></div>
           </a>
           <a href="https://www.linkedin.com/in/hrudul-krishna-k-v-3b4775328/" target="_blank" class="citem">
-            <div class="cicon"><img src="images/icons/linkedin.svg"></div>
+            <div class="cicon" ><img src="images/icons/linkedin.svg"></div>
             <div><div class="clabel">LinkedIn</div><div class="cval">Hrudul Krishna K V</div></div>
           </a>
           <a href="resume.pdf" target="_blank" class="citem">

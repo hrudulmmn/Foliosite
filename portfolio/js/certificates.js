@@ -1,7 +1,4 @@
 const certs = [
-  { title: 'Data Structures & Algorithms',  issuer: 'NPTEL',    badge: '🏅', year: '2024',  },
-  { title: 'Full Stack Web Development',    issuer: 'Udemy',    badge: '🎖️', year: '2024' },
-  { title: 'Machine Learning Fundamentals', issuer: 'Coursera', badge: '⭐', year: '2023' },
   { title: 'Introduction to Machine Learning', issuer: 'NPTEL',    badge: '🔖', year: '2025', image:"images/certificates/mlnptel.png" },
   { title: 'Deloitte Job Simulation',   issuer: 'Forage',    badge: '🏆', year: '2025',image: "images/certificates/deloitte.png" },
 ];
@@ -47,10 +44,15 @@ function initCertPile() {
           <span class="cissuer">${c.issuer} · ${c.year}</span>
         </div>
         <div class="ctitle">${c.title}</div>
-        <div class="cbar"></div>
+        <div class="cbar"></div> 
       </div>`;
     card.addEventListener('mouseenter', () => { card.style.zIndex = 20; });
     card.addEventListener('mouseleave', () => { card.style.zIndex = i + 1; });
+    card.addEventListener('click',()=>{
+      if(c.image){
+      window.open(c.image,'_blank');
+      }
+    });
     pile.appendChild(card);
     cardEls.push(card);
 
@@ -59,6 +61,58 @@ function initCertPile() {
     dotsEl.appendChild(dot);
     dotEls.push(dot);
   });
+
+  const certRows = document.getElementById('certRows');
+  certs.forEach((c,i)=>{
+    const row = document.createElement('div');
+    row.className = 'cert-row-card';
+    row.innerHTML = `
+      <div class="cert-row-badge">${c.badge}</div>
+    <div class="cert-row-info">
+      <div class="cert-row-title">${c.title}</div>
+      <div class="cert-row-issuer">${c.issuer} · ${c.year}</div>
+        <span class="cert-row-status-done">✓ Verified</span>
+    </div>
+    <div class="cert-row-arrow">›</div>`;    
+
+    row.addEventListener('click',()=>openModal(c));
+    certRows.appendChild(row);
+  });
+
+const modal=document.getElementById('certModal');
+const modalImg=document.getElementById('certModalImg');
+const modalTitle=document.getElementById('certModalTitle');
+const modalIssuer=document.getElementById('certModalIssuer');
+const modalDetails=document.getElementById('certModalDetails');
+const modalActions=document.getElementById('certModalActions');
+const modalNote=document.getElementById('certModalNote');
+const modalClose=document.getElementById('certModalClose');
+
+function openModal(c){
+  if(c.image){
+    modalImg.src=c.image;
+    modalImg.style.display='block';
+  } else {
+    modalImg.style.display='none';
+  }
+  modalTitle.textContent=c.title;
+  modalIssuer.textContent=`${c.issuer} · ${c.year}`;
+    modalActions.innerHTML=`
+      ${c.verifyUrl?`<a href="" target="_blank" class="cert-modal-btn primary">🔗 Verify Certificate</a>`:''}
+      ${c.image?`<button class="cert-modal-btn secondary" onclick="window.open('${c.image}','_blank')">🔍 Full Image</button>`:''}`;
+    modalNote.style.display='none';
+  modal.classList.add('open');
+  document.body.style.overflow='hidden';
+}
+
+function closeCertModal(){
+  modal.classList.remove('open');
+  document.body.style.overflow='';
+}
+modalClose.addEventListener('click',closeCertModal);
+modal.addEventListener('click',e=>{if(e.target===modal)closeCertModal();});
+document.addEventListener('keydown',e=>{if(e.key==='Escape')closeCertModal();});
+
 
   /* Render cards based on virtualScroll instead of window.scrollY */
   function render() {

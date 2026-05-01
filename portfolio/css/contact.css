@@ -70,3 +70,11 @@ footer {
   color:var(--muted); font-size:.8rem;
   border-top:1px solid var(--border);
 }
+
+@media(max-width:768px){
+  .cont-vis {display: none;}
+  #contact{padding: 70px 0;}
+  .cont-grid{grid-template-columns: 1fr;gap:20px;justify-content: center;}
+  .citem{padding: 14px 20px;}
+  .cont-inner{text-align: center;}
+}
