@@ -2,7 +2,7 @@
    PROJECTS
 ══════════════════════════════════════════ */
 #projects {
-  background: var(--bg);
+  background: var(--surface);
   padding: 100px 0;
   overflow-x: hidden; /* prevent horizontal overflow from stream */
 }

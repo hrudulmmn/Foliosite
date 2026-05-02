@@ -1,0 +1,207 @@
+/* ══════════════════════════════════════════
+   SERVICES — compact cards
+══════════════════════════════════════════ */
+#services {
+  background: #0a111f;
+  padding: 100px 0;
+  position: relative;
+  overflow: hidden;
+}
+#services::before {
+  content: '';
+  position: absolute; inset: 0;
+  background-image:
+    linear-gradient(rgba(90,110,160,.04) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(90,110,160,.04) 1px, transparent 1px);
+  background-size: 56px 56px;
+  pointer-events: none;
+}
+
+.serv-inner {
+  max-width: 1100px;
+  margin: 0 auto;
+  padding: 0 40px;
+  position: relative;
+  z-index: 1;
+}
+
+.serv-header {
+  display: flex; align-items: center; gap: 16px;
+  margin-bottom: 12px;
+}
+.serv-title-box {
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 10px; padding: 10px 24px;
+}
+.serv-title-box span {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.3rem; font-weight: 700; letter-spacing: .1em;
+}
+.serv-subtitle {
+  color: var(--muted); font-size: .85rem;
+  margin-bottom: 40px;
+}
+
+/* ── TABS ── */
+.serv-tabs {
+  display: flex; gap: 8px;
+  margin-bottom: 32px; flex-wrap: wrap;
+}
+.serv-tab {
+  padding: 6px 16px; border-radius: 20px;
+  font-family: 'Rajdhani', sans-serif;
+  font-size: .76rem; font-weight: 700; letter-spacing: .06em;
+  text-transform: uppercase;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--muted);
+  cursor: pointer; transition: all .2s;
+}
+.serv-tab:hover { color: var(--text); border-color: var(--accent2); }
+.serv-tab.active { background: var(--accent); color: #000; border-color: var(--accent); }
+
+/* ── GRID — 3 cols desktop ── */
+.serv-grid {
+  display: grid;
+  gap: 16px;
+}
+
+/* ── COMPACT CARD ── */
+.serv-card {
+  background: var(--card);
+  border: 1px solid var(--border);
+  border-radius: 14px;
+  padding: 22px 20px;
+  position: relative;
+  transition: border-color .25s, transform .25s, box-shadow .25s;
+  display: none;
+  overflow: hidden;
+}
+.serv-card.visible { display: block; animation: fadeUp .35s ease both; }
+.serv-card:hover {
+  border-color: var(--accent2);
+  transform: translateY(-4px);
+  box-shadow: 0 16px 40px rgba(0,200,255,.1);
+}
+/* top accent bar */
+.serv-card::before {
+  content: '';
+  position: absolute; top: 0; left: 0; right: 0; height: 2px;
+  background: var(--accent);
+  transform: scaleX(0); transform-origin: left;
+  transition: transform .3s;
+}
+.serv-card:hover::before { transform: scaleX(1); }
+
+/* Icon + name row */
+.serv-card-top {
+  display: flex; align-items: center; gap: 12px;
+  margin-bottom: 10px;
+}
+.serv-icon { font-size: 1.6rem; flex-shrink: 0; }
+.serv-name {
+  font-family: 'Orbitron', monospace;
+  font-size: 1.2rem; font-weight: 700;
+  letter-spacing: .07em; color: var(--text);
+  line-height: 1.4;
+  margin-top: 6px;
+}
+
+/* One-line description */
+.serv-desc {
+  font-size: .8rem; color: var(--muted);
+  line-height: 1.6; margin-bottom: 14px;
+}
+
+/* ── LIST — multiline bullet fix ── */
+.serv-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding: 0;
+  margin: 0;
+}
+.serv-list li {
+  display: grid;
+  grid-template-columns: 10px 1fr;
+  gap: 8px;
+  align-items: start;
+  font-size: .8rem;
+  color: rgba(227, 227, 227, 0.838);
+  line-height: 1.6;
+  text-align: justify;
+}
+.serv-list li::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: var(--accent);
+  margin-top: 0.45em;
+  flex-shrink: 0;
+}
+
+/* Tags */
+.serv-tags { display: flex; flex-wrap: wrap; gap: 0.7rem; padding-top: 16px; }
+.serv-tag {
+  font-size: .67rem;
+  padding: 3px 8px;
+  border-radius: 3px;
+  background: rgba(245,197,24,.1);
+  color: var(--accent);
+  border: 1px solid rgba(245,197,24,.2);
+  font-weight: 600;
+}
+.delivery {
+  background: rgba(0,200,255,.08);
+  font-size: .62rem;
+  padding: 2px 7px;
+  border-radius: 4px;
+  font-weight: 600;
+  color: var(--accent2);
+  border: 1px solid rgba(0,200,255,.15);
+}
+
+/* ── CTA ── */
+.serv-cta {
+  margin-top: 44px;
+  background: var(--surface2); border: 1px solid var(--border);
+  border-radius: 16px; padding: 30px 36px;
+  display: flex; align-items: center;
+  justify-content: space-between; gap: 20px; flex-wrap: wrap;
+}
+.serv-cta-text h3 {
+  font-family: 'Orbitron', monospace;
+  font-size: .92rem; font-weight: 700;
+  letter-spacing: .06em; margin-bottom: 4px;
+}
+.serv-cta-text p { font-size: .8rem; color: var(--muted); }
+.serv-cta-btn {
+  padding: 10px 24px; background: var(--accent); color: #000;
+  border: 2px solid var(--accent); border-radius: 8px;
+  font-family: 'Rajdhani', sans-serif; font-size: .84rem;
+  font-weight: 700; letter-spacing: .07em; text-transform: uppercase;
+  text-decoration: none; transition: all .25s; white-space: nowrap; cursor: none;
+}
+.serv-cta-btn:hover { background: transparent; color: var(--accent); }
+
+/* ── MOBILE ── */
+@media (max-width: 768px) {
+  #services { padding: 70px 6px; }
+  .serv-inner { padding: 0 20px; }
+  .serv-title-box span { font-size: 1.1rem; }
+  .serv-grid { grid-template-columns: 1fr; gap: 12px; }
+  .serv-cta { padding: 22px 20px; flex-direction: column; align-items: flex-start; }
+  .serv-cta-btn { width: 100%; text-align: center; }
+  .serv-title-box {
+    display: block;
+    text-align: center;
+    margin-left: auto;
+    margin-right: auto;
+    width: fit-content;
+  }
+}
+
+@media (min-width: 769px) and (max-width: 1024px) {
+  .serv-inner { padding: 0 28px; }
+  .serv-grid { grid-template-columns: repeat(2, 1fr); }
+}
