@@ -1,6 +1,7 @@
 const certs = [
   { title: 'Introduction to Machine Learning', issuer: 'NPTEL',    badge: '🔖', year: '2025', image:"images/certificates/mlnptel.png" },
   { title: 'Deloitte Job Simulation',   issuer: 'Forage',    badge: '🏆', year: '2025',image: "images/certificates/deloitte.png" },
+  { title: 'Cloud Computing and Distributed Systems', issuer: 'NPTEL',    badge: '🔖', year: '2026', image:"images/certificates/cloudnptel.png" },
 ];
 
 
